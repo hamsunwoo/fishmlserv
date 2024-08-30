@@ -22,7 +22,9 @@ def fish(length: float, weight: float):
     Returns:
         dict: 물고기 종류를 담은 딕셔너리
     """
-    if length > 30.0:
+    import pickle
+
+    if fish_model.predict([[length, weight]])[0] == 1:
         prediction = "도미"
     else:
         prediction = "빙어"
