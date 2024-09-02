@@ -1,5 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
+import pickle
+from fishmlserv.model.manager import get_model_path
 
 app = FastAPI()
 
@@ -23,16 +25,20 @@ def fish(length: float, weight: float):
         dict: 물고기 종류를 담은 딕셔너리
     """
     
-    #if fish_model.predict([[length, weight]])[0] == 1:
+    ### 모델 불러오기
+    model_path = get_model_path()
+    with open(model_path, "rb") as f:
+        fish_model = pickle.load(f)
 
-    fish_class = "몰라"
-        #prediction = "도미"
-    #else:
-    #    prediction = "빙어"
+    prediction = fish_model.predict([[length, weight]])
+
+    if prediction[0] == 1:
+        fish_class = "도미"
+    else:
+        fish_class = "빙어"
 
     return {
-    #        "prediction": prediction,
-            "length": length,
-            "weight": weight
-            }
-
+                "prediction": fish_class,
+                "length": length, 
+                "weight": weight
+            } 
