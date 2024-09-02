@@ -24,7 +24,7 @@ $ sudo docker run -d --name fmlserv-040 -p 8877:8765 fishmlserv:0.4.0
 
 ### docker 안으로
 ```bash
-$ docker exec -it fishmlserv:0.7.1 bash
+$ docker exec -it fml071 bash
 ```
 
 ### docker 컨테이너 안에서...
