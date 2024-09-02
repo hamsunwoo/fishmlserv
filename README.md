@@ -22,6 +22,26 @@ $ sudo docker build -t fishmlserv:0.4.0 .
 $ sudo docker run -d --name fmlserv-040 -p 8877:8765 fishmlserv:0.4.0
 ```
 
+### docker 안으로
+```bash
+$ docker exec -it fishmlserv:0.7.1 bash
+```
+
+### docker 컨테이너 안에서...
+```bash
+cat /etc/os-release
+
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+```
+
 ### fly.io
 ```bash
 $ fly launch --no-deploy
