@@ -42,6 +42,11 @@ SUPPORT_URL="https://www.debian.org/support"
 BUG_REPORT_URL="https://bugs.debian.org/"
 ```
 
+### 로그확인
+```bash
+$ docker logs -f <CONTAINER ID|NAMES>
+```
+
 ### fly.io
 ```bash
 $ fly launch --no-deploy
