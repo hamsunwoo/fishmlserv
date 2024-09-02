@@ -1,6 +1,5 @@
 from typing import Union
 from fastapi import FastAPI
-from model.manager import get_model_path
 
 app = FastAPI()
 
