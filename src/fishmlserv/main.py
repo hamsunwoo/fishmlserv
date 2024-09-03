@@ -37,4 +37,8 @@ def fish(l: float, w: float):
         fish_class = "빙어"
     
     print(f"length: {l}, weight: {w} = {fish_class}입니다!!")
-
+    return {
+            "prediction": fish_class,
+            "length": l,
+            "weight": w
+            }
