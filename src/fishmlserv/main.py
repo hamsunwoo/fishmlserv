@@ -36,5 +36,5 @@ def fish(l: float, w: float):
     else:
         fish_class = "빙어"
     
-    print(f"length: {l}, weight: {w}")
+    print(f"length: {l}, weight: {w} = {fish_class}입니다!!")
 
