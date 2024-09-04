@@ -1,17 +1,17 @@
 from typing import Union
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import pickle
 from fishmlserv.model.manager import get_model_path
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"Hello": "world"}
+#실행 시 모델을 한 번 로딩
+def load_model():
+    global fish_model
+    model_path = get_model_path()
+    with open(model_path, "rb") as f:
+        fish_model = pickle.load(f)
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
 
 @app.get("/fish")
 def fish(l: float, w: float):
@@ -24,19 +24,19 @@ def fish(l: float, w: float):
     Returns:
         dict: 물고기 종류를 담은 딕셔너리
     """
-    ### 모델 불러오기
-    model_path = get_model_path()
-    with open(model_path, "rb") as f:
-        fish_model = pickle.load(f)
 
+    #모델 예측
     prediction = fish_model.predict([[l, w]])
 
     if prediction[0] == 1:
         fish_class = "도미"
-    else:
+
+    elif prediction[0] == 0:
         fish_class = "빙어"
+
+    else:
+        raise HTTPException(status_code=500, detail="예측할 수 없는 결과입니다.")
     
-    #print(f"length: {l}, weight: {w} = {fish_class}입니다!!")
     return {
             "prediction": fish_class,
             "length": l,
