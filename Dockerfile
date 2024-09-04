@@ -1,4 +1,4 @@
-FROM hamsunwoo/fishmlserv:1.1.0
+FROM hamsunwoo/fishmlserv:0.8.2
 
 WORKDIR /code
 
