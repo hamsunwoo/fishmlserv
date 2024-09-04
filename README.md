@@ -47,6 +47,13 @@ BUG_REPORT_URL="https://bugs.debian.org/"
 $ docker logs -f <CONTAINER ID|NAMES>
 ```
 
+### LB
+```bash
+$ docker build -t ml-lb:1.1.2 LB/
+
+$ docker run -d -p 8765:80 --link ml-1 --link ml-2 --name lb-2 ml-lb:1.1.2
+```
+
 ### fly.io
 ```bash
 $ fly launch --no-deploy
